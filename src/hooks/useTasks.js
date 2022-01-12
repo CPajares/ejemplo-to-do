@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import tasksContext from "../redux/contexts/tasksContext";
+import tasksContext from "../store/contexts/tasksContext";
 
 const useTasks = () => {
   const { tasks, dispatch } = useContext(tasksContext);
