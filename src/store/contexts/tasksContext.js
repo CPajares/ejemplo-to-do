@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-const tasksContext = createContext();
-tasksContext.displayName = "tasksContext";
+const TasksContext = createContext();
+TasksContext.displayName = "TasksContext";
 
-export default tasksContext;
+export default TasksContext;
