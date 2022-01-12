@@ -96,6 +96,7 @@ const CreateForm = () => {
             value={formCreate.category}
             onChange={changeForm}
           >
+            <option></option>
             <option>Compra</option>
             <option>Ocio</option>
             <option>Personal</option>
