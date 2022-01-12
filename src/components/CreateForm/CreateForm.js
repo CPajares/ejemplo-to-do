@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import useTasks from "../../hooks/useTasks";
 import "./CreateForm.css";
 
 const CreateForm = () => {
+  const { createTask } = useTasks();
+
   const [isDisabled, setIsDisabled] = useState(true);
 
   const initForm = {
@@ -36,10 +39,10 @@ const CreateForm = () => {
     setFormCreate({ ...formCreate, [event.target.id]: event.target.value });
   };
 
-  const clickCreate = (event) => {
+  const clickCreate = async (event) => {
     event.preventDefault();
+    await createTask(formCreate);
     setFormCreate(initForm);
-    console.log(formCreate);
   };
 
   return (
