@@ -57,6 +57,7 @@ const CreateForm = () => {
             id="name"
             name="name"
             onChange={changeForm}
+            placeholder="Tarea"
           />
         </div>
         <div className="form-group">
@@ -67,6 +68,7 @@ const CreateForm = () => {
             value={formCreate.description}
             name="description"
             onChange={changeForm}
+            placeholder="Descripción"
           />
         </div>
 
@@ -78,6 +80,7 @@ const CreateForm = () => {
             value={formCreate.date}
             name="date"
             onChange={changeForm}
+            placeholder="dd/mm/aaaa"
           />
         </div>
         <div className="form-group d-flex align-items-center">
@@ -86,6 +89,7 @@ const CreateForm = () => {
             className="form-control"
             name="category"
             id="category"
+            data-testid="select-category"
             value={formCreate.category}
             onChange={changeForm}
           >
