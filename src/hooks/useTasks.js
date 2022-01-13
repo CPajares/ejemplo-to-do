@@ -1,12 +1,23 @@
 import axios from "axios";
-import { useContext } from "react";
-import { createTaskAction } from "../store/actions/actionCreators";
+import { useCallback, useContext } from "react";
+import {
+  createTaskAction,
+  getTasksAction,
+} from "../store/actions/actionCreators";
 import tasksContext from "../store/contexts/tasksContext";
 
 const useTasks = () => {
   const { tasks, dispatch } = useContext(tasksContext);
 
   const urlAPI = process.env.REACT_APP_URL_API;
+
+  const getTasks = useCallback(async () => {
+    const response = await axios.get(urlAPI);
+
+    if (response.status === 200) {
+      dispatch(getTasksAction(response.data));
+    }
+  }, [dispatch, urlAPI]);
 
   const createTask = async (task) => {
     const response = await axios.post(urlAPI, task);
@@ -19,6 +30,7 @@ const useTasks = () => {
   return {
     tasks,
     createTask,
+    getTasks,
   };
 };
 
