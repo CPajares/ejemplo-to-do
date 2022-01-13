@@ -5,8 +5,9 @@ const tasksReducer = (tasks = [], action) => {
 
   if (action.type === actionTypes.createTask) {
     newTasks = [...tasks, action.task];
+  } else if (action.type === actionTypes.getTasks) {
+    newTasks = [...action.tasks];
   }
-
   return newTasks;
 };
 
