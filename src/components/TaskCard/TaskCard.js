@@ -1,11 +1,15 @@
 import useTasks from "../../hooks/useTasks";
 
 const TaskCard = ({ task }) => {
-  const { modifyTask } = useTasks();
+  const { modifyTask, deleteTask } = useTasks();
 
   const clickModify = () => {
     const newTask = { ...task, isDone: !task.isDone };
     modifyTask(newTask);
+  };
+
+  const clickDelete = () => {
+    deleteTask(task);
   };
 
   return (
@@ -20,7 +24,9 @@ const TaskCard = ({ task }) => {
       </div>
       <div>
         <button type="button">Editar tarea</button>
-        <button type="button">Eliminar tarea</button>
+        <button type="button" onClick={clickDelete}>
+          Eliminar tarea
+        </button>
         <button type="button" onClick={clickModify}>
           Marcar como {!task.isDone ? "Hecha" : "Pendiente"}
         </button>
