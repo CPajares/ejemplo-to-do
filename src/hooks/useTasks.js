@@ -2,6 +2,7 @@ import axios from "axios";
 import { useCallback, useContext } from "react";
 import {
   createTaskAction,
+  deleteTaskAction,
   getTasksAction,
   modifyAction,
 } from "../store/actions/actionCreators";
@@ -36,11 +37,20 @@ const useTasks = () => {
     }
   };
 
+  const deleteTask = async (task) => {
+    const response = await axios.delete(`${urlAPI}/${task.id}`);
+
+    if (response.status === 200) {
+      dispatch(deleteTaskAction(task));
+    }
+  };
+
   return {
     tasks,
     createTask,
     getTasks,
     modifyTask,
+    deleteTask,
   };
 };
 
