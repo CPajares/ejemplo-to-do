@@ -1,15 +1,21 @@
 import { useState } from "react";
 import useTasks from "../../hooks/useTasks";
 import CreateForm from "../CreateForm/CreateForm";
+import SearchForm from "../SearchForm/SearchForm";
 import TaskCard from "../TaskCard/TaskCard";
 
 const Header = () => {
   const [mostrarInfo, setMostarInfo] = useState("");
 
-  const { tasks } = useTasks();
+  const { tasks, getTasks } = useTasks();
 
   const clickTarea = (event) => {
     setMostarInfo(event.target.id);
+  };
+
+  const clickMostrar = (event) => {
+    setMostarInfo(event.target.id);
+    getTasks();
   };
 
   return (
@@ -27,15 +33,18 @@ const Header = () => {
               BUSCAR TAREA
             </button>
           </li>
+          <li>
+            <button onClick={clickMostrar} id="mostrar" type="button">
+              MOSTRAR TODAS
+            </button>
+          </li>
         </ul>
       </nav>
 
       {mostrarInfo === "crear" && <CreateForm />}
-
-      <h2>Tus Proximas tareas:</h2>
-      {tasks.map((task) => (
-        <TaskCard key={task.id} task={task}></TaskCard>
-      ))}
+      {mostrarInfo === "buscar" && <SearchForm />}
+      {mostrarInfo === "mostrar" &&
+        tasks.map((task) => <TaskCard key={task.id} task={task}></TaskCard>)}
     </>
   );
 };
