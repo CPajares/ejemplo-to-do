@@ -41,6 +41,7 @@ const CreateForm = () => {
 
   const clickCreate = async (event) => {
     event.preventDefault();
+    formCreate.date = formCreate.date.split("-").reverse().join("/");
     await createTask(formCreate);
     setFormCreate(initForm);
   };
