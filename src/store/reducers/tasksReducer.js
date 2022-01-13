@@ -7,6 +7,11 @@ const tasksReducer = (tasks = [], action) => {
     newTasks = [...tasks, action.task];
   } else if (action.type === actionTypes.getTasks) {
     newTasks = [...action.tasks];
+  } else if (action.type === actionTypes.modifyTask) {
+    newTasks = [
+      ...tasks.filter((task) => task.id !== action.task.id),
+      action.task,
+    ];
   }
   return newTasks;
 };

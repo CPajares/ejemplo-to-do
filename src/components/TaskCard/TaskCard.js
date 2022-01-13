@@ -1,5 +1,13 @@
+import useTasks from "../../hooks/useTasks";
+
 const TaskCard = ({ task }) => {
-  console.log(task);
+  const { modifyTask } = useTasks();
+
+  const clickModify = () => {
+    const newTask = { ...task, isDone: !task.isDone };
+    modifyTask(newTask);
+  };
+
   return (
     <>
       <div>
@@ -11,12 +19,11 @@ const TaskCard = ({ task }) => {
         </div>
       </div>
       <div>
-        <button>Editar tarea</button>
-        <button>Eliminar tarea</button>
-        <label htmlFor="state">
+        <button type="button">Editar tarea</button>
+        <button type="button">Eliminar tarea</button>
+        <button type="button" onClick={clickModify}>
           Marcar como {!task.isDone ? "Hecha" : "Pendiente"}
-        </label>
-        <input id="state" type="checkbox" />
+        </button>
       </div>
     </>
   );
