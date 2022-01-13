@@ -19,6 +19,8 @@ const useTasks = () => {
     if (response.status === 200) {
       dispatch(getTasksAction(response.data));
     }
+
+    return response.data;
   }, [dispatch, urlAPI]);
 
   const createTask = async (task) => {
@@ -47,6 +49,7 @@ const useTasks = () => {
 
   return {
     tasks,
+    dispatch,
     createTask,
     getTasks,
     modifyTask,
