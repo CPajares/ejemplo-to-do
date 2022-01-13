@@ -3,6 +3,7 @@ import { useCallback, useContext } from "react";
 import {
   createTaskAction,
   getTasksAction,
+  modifyAction,
 } from "../store/actions/actionCreators";
 import tasksContext from "../store/contexts/tasksContext";
 
@@ -27,10 +28,19 @@ const useTasks = () => {
     }
   };
 
+  const modifyTask = async (task) => {
+    const response = await axios.put(`${urlAPI}/${task.id}`, task);
+
+    if (response.status === 200) {
+      dispatch(modifyAction(response.data));
+    }
+  };
+
   return {
     tasks,
     createTask,
     getTasks,
+    modifyTask,
   };
 };
 
