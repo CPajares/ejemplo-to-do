@@ -12,6 +12,8 @@ const tasksReducer = (tasks = [], action) => {
       ...tasks.filter((task) => task.id !== action.task.id),
       action.task,
     ];
+  } else if (action.type === actionTypes.deleteTask) {
+    newTasks = [...tasks.filter((task) => task.id !== action.task.id)];
   }
   return newTasks;
 };
