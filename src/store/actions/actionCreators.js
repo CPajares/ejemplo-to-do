@@ -9,3 +9,8 @@ export const getTasksAction = (tasks) => ({
   type: actionTypes.getTasks,
   tasks,
 });
+
+export const modifyAction = (task) => ({
+  type: actionTypes.modifyTask,
+  task,
+});
