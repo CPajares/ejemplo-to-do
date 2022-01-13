@@ -19,3 +19,8 @@ export const deleteTaskAction = (task) => ({
   type: actionTypes.deleteTask,
   task,
 });
+
+export const filterTasksAction = (tasks) => ({
+  type: actionTypes.filterTasks,
+  tasks,
+});

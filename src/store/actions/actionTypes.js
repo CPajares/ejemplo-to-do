@@ -3,6 +3,7 @@ const actionTypes = {
   getTasks: "GET_TASKS",
   modifyTask: "MODIFY_TASK",
   deleteTask: "DELETE_TASK",
+  filterTasks: "FILTER_TASKS",
 };
 
 export default actionTypes;
