@@ -3,6 +3,7 @@ import useTasks from "../../hooks/useTasks";
 import CreateForm from "../CreateForm/CreateForm";
 import SearchForm from "../SearchForm/SearchForm";
 import TaskCard from "../TaskCard/TaskCard";
+import "./Header.css";
 
 const Header = () => {
   const [mostrarInfo, setMostarInfo] = useState("");
@@ -20,9 +21,9 @@ const Header = () => {
 
   return (
     <>
-      <nav>
-        <h1>TU TO-DO LIST</h1>
-        <ul>
+      <nav className="nav-container">
+        <h1 className="nav__title">TU TO-DO LIST</h1>
+        <ul className="nav__list d-flex">
           <li>
             <button onClick={clickTarea} id="crear" type="button">
               CREAR TAREA
@@ -40,11 +41,15 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-
       {mostrarInfo === "crear" && <CreateForm />}
       {mostrarInfo === "buscar" && <SearchForm />}
-      {mostrarInfo === "mostrar" &&
-        tasks.map((task) => <TaskCard key={task.id} task={task}></TaskCard>)}
+      {mostrarInfo === "mostrar" && (
+        <div className="tasks-container">
+          {tasks.map((task) => (
+            <TaskCard key={task.id} task={task}></TaskCard>
+          ))}
+        </div>
+      )}
     </>
   );
 };
