@@ -1,0 +1,33 @@
+.task-container {
+  box-shadow: 10px 20px 20px -5px black;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+  width: 350px;
+  min-height: 350px;
+  margin: 45px;
+}
+
+.task-done {
+  background-color: #94fd90ea;
+}
+
+.task-pending {
+  background-color: #fd9090ea;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons-container {
+  width: 100%;
+}
+
+input,
+select {
+  margin: 10px;
+}

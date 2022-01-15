@@ -1,15 +1,12 @@
-import { useEffect } from "react";
-import useTasks from "../../hooks/useTasks";
 import Header from "../Header/Header";
+import "./Todo.css";
 
 const Todo = () => {
-  const { getTasks } = useTasks();
-
-  useEffect(() => {
-    getTasks();
-  }, [getTasks]);
-
-  return <Header />;
+  return (
+    <div className="main-container d-flex flex-column align-items-center ">
+      <Header />
+    </div>
+  );
 };
 
 export default Todo;

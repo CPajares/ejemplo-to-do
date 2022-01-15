@@ -1,9 +1,11 @@
 import { useState } from "react/cjs/react.development";
 import useTasks from "../../hooks/useTasks";
 import { filterTasksAction } from "../../store/actions/actionCreators";
+import TaskCard from "../TaskCard/TaskCard";
+import "./SearchForm.css";
 
 const SearchForm = () => {
-  const { dispatch, getTasks } = useTasks();
+  const { dispatch, getTasks, tasks } = useTasks();
 
   const [searchValue, setSearchValue] = useState("");
   const [dataToSearch, setDataToSearch] = useState("");
@@ -14,8 +16,8 @@ const SearchForm = () => {
       case "Nombre":
         setSearchValue("name");
         break;
-      case "Descripción":
-        setSearchValue("description");
+      case "Categoría":
+        setSearchValue("category");
         break;
       case "Fecha":
         setSearchValue("date");
@@ -48,31 +50,40 @@ const SearchForm = () => {
   };
 
   return (
-    <form>
-      <div className="form-group d-flex align-items-center">
-        <label htmlFor="category">Buscar por:</label>
-        <select
-          onClick={selectedValue}
-          className="form-control"
-          name="search"
-          id="search"
-        >
-          <option></option>
-          <option>Nombre</option>
-          <option>Descripción</option>
-          <option>Fecha</option>
-        </select>
+    <>
+      <form className="form-container d-flex flex-column align-items-center">
+        <div className="section-container form-group d-flex justify-content-around align-items-center">
+          <label htmlFor="category">Buscar por:</label>
+          <select
+            onClick={selectedValue}
+            className="form-control select-category"
+            name="search"
+            id="search"
+          >
+            <option></option>
+            <option>Nombre</option>
+            <option>Categoría</option>
+            <option>Fecha</option>
+          </select>
+        </div>
+        <div className="section-container form-group d-flex justify-content-around align-items-center">
+          {searchValue && (
+            <input
+              type={searchValue === "date" ? "date" : "text"}
+              onChange={changeDataToSearch}
+            />
+          )}
+        </div>
+        <button onClick={clickSearch} type="submit">
+          BUSCAR
+        </button>
+      </form>
+      <div className="tasks-container">
+        {tasks.map((task) => (
+          <TaskCard key={task.id} task={task}></TaskCard>
+        ))}
       </div>
-      {searchValue && (
-        <input
-          type={searchValue === "date" ? "date" : "text"}
-          onChange={changeDataToSearch}
-        />
-      )}
-      <button onClick={clickSearch} type="submit">
-        BUSCAR
-      </button>
-    </form>
+    </>
   );
 };
 

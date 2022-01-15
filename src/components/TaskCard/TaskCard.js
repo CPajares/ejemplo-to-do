@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useTasks from "../../hooks/useTasks";
+import "./TaskCard.css";
 
 const TaskCard = ({ task }) => {
   const { modifyTask, deleteTask } = useTasks();
@@ -27,9 +28,13 @@ const TaskCard = ({ task }) => {
 
   return (
     <>
-      <div>
+      <div
+        className={` ${
+          task.isDone ? "task-done " : "task-pending "
+        }task-container`}
+      >
         {isEdit ? (
-          <div>
+          <div className="d-flex flex-column">
             <input
               value={taskEdit.name}
               type="text"
@@ -38,8 +43,9 @@ const TaskCard = ({ task }) => {
               onChange={changeTask}
               placeholder="titulo"
             />
-            <input
+            <textarea
               value={taskEdit.description}
+              rows={4}
               type="text"
               id="description"
               name="description"
@@ -54,28 +60,43 @@ const TaskCard = ({ task }) => {
               onChange={changeTask}
               placeholder="fecha"
             />
+            <select
+              name="category"
+              id="category"
+              value={taskEdit.category}
+              onChange={changeTask}
+            >
+              <option></option>
+              <option>Compra</option>
+              <option>Ocio</option>
+              <option>Personal</option>
+              <option>Trabajo</option>
+              <option>Casa</option>
+            </select>
 
             <p>{task.isDone ? "Hecha" : "Pendiente"}</p>
           </div>
         ) : (
-          <div>
+          <div className="d-flex flex-column">
             <h3>{task.name}</h3>
             <p>{task.description}</p>
             <p>{task.date}</p>
+            <p>{task.category}</p>
             <p>{task.isDone ? "Hecha" : "Pendiente"}</p>
           </div>
         )}
-      </div>
-      <div>
-        <button type="button" onClick={clickEdit}>
-          {isEdit ? "Guardar" : "Editar tarea"}
-        </button>
-        <button type="button" onClick={clickDelete}>
-          Eliminar tarea
-        </button>
-        <button type="button" onClick={clickModify}>
-          Marcar como {!task.isDone ? "Hecha" : "Pendiente"}
-        </button>
+
+        <div className="buttons-container d-flex justify-content-around">
+          <button type="button" onClick={clickEdit}>
+            {isEdit ? "Guardar" : "Editar"}
+          </button>
+          <button type="button" onClick={clickDelete}>
+            Eliminar
+          </button>
+          <button type="button" onClick={clickModify}>
+            {!task.isDone ? "Hecha" : "Pendiente"}
+          </button>
+        </div>
       </div>
     </>
   );

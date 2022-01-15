@@ -1,10 +1,18 @@
-.create-container {
+.form-container {
   border: 4px solid #6b5334;
   background-color: #6b53342c;
   border-radius: 15px;
   display: flex;
   padding: 20px;
-  width: 350px;
-  height: 450px;
+  width: 300px;
   margin: 45px;
+}
+
+.section-container {
+  width: 250px;
+  margin: 15px;
+}
+
+.select-category {
+  width: 150px;
 }

@@ -1,0 +1,22 @@
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px;
+  width: 100%;
+}
+
+.tasks-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.nav__title {
+  width: 50%;
+  margin-left: 25px;
+}
+.nav__list {
+  width: 50%;
+  margin-right: 25px;
+  justify-content: space-between;
+}
