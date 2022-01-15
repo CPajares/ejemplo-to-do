@@ -5,7 +5,7 @@ const tasksReducer = (tasks = [], action) => {
 
   switch (action.type) {
     case actionTypes.createTask:
-      newTasks = [...tasks, action.task];
+      newTasks = [action.task];
       break;
     case actionTypes.getTasks:
       newTasks = [...action.tasks];
